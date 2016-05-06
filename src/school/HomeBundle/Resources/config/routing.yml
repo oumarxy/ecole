@@ -1,0 +1,3 @@
+school_home_homepage:
+    path:     /
+    defaults: { _controller: schoolHomeBundle:Home:index }
