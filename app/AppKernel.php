@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new PUGX\MultiUserBundle\PUGXMultiUserBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new school\HomeBundle\schoolHomeBundle(),
             new school\UserBundle\schoolUserBundle(),

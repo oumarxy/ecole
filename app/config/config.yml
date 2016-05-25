@@ -76,9 +76,37 @@ fos_user:
     db_driver:     orm                        # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
     firewall_name: main                       # Le nom du firewall derrière lequel on utilisera ces utilisateurs
     user_class:    school\UserBundle\Entity\User # La classe de l'entité User que nous utilisons
-    profile:
-        form:
-            type: school\UserBundle\Form\Type\ProfileFormType
+    service:
+        user_manager: pugx_user_manager
+
+# PUGXMultiUserBundle Configuration
+pugx_multi_user:
+  users:
+    teacher:
+        entity:
+          class: school\UserBundle\Entity\Teacher
+#          factory:
+        registration:
+          form:
+            type: school\UserBundle\Form\Type\RegistrationTeacherFormType
+            name: fos_user_registration_form
+            validation_groups:  [Registration, Default]
+          template: schoolUserBundle:Registration:teacher.form.html.twig
+        profile:
+          form:
+            type: school\UserBundle\Form\Type\ProfileTeacherFormType
+            name: fos_user_profile_form
+            validation_groups:  [Profile, Default]
+    student:
+        entity:
+          class: school\UserBundle\Entity\Student
+        registration:
+          form:
+            type: school\UserBundle\Form\Type\RegistrationStudentFormType
+          template: schoolUserBundle:Registration:student.form.html.twig
+        profile:
+          form:
+            type: school\UserBundle\Form\Type\ProfileStudentFormType
 
 # LiipImagineBundle Configuration
 liip_imagine:

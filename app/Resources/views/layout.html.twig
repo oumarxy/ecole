@@ -171,33 +171,69 @@
 
                     </div>
                     <div class="header-top-right collapsed-block col-lg-8 col-md-7 col-xs-12 ">
-                        <h5 class="tabBlockTitle visible-sm visible-xs">More<a class="expander " href="#TabBlock-1"><i
+                        <h5 class="tabBlockTitle visible-sm visible-xs">Plus<a class="expander " href="#TabBlock-1"><i
                                         class="fa fa-angle-down"></i></a></h5>
                         <div class="tabBlock" id="TabBlock-1">
 
                             <ul class="top-link list-inline">
-                                <li class="account" id="my_account"><a
-                                            href="http://opencart.magentech.com/themes/so_maxshop/layout4/index.php?route=account/account"
+                                {#<li class="account" id="my_account"><a
+                                            href="#"
                                             title="My Account" class="btn btn-xs dropdown-toggle" data-toggle="dropdown">
                                         <span>My Account</span> <span class="fa fa-angle-down"></span></a>
                                     <ul style="display: none;" class="dropdown-menu ">
                                         <li>
-                                            <a href="http://opencart.magentech.com/themes/so_maxshop/layout4/index.php?route=account/register"><i
-                                                        class="fa fa-user"></i> Register</a></li>
+                                            <a href="#"><i
+                                                        class="fa fa-user"></i> Register</a>
+                                        </li>
                                         <li>
-                                            <a href="http://opencart.magentech.com/themes/so_maxshop/layout4/index.php?route=account/login"><i
-                                                        class="fa fa-pencil-square-o"></i> Login</a></li>
+                                            <a href="#"><i
+                                                        class="fa fa-pencil-square-o"></i> Login</a>
+                                        </li>
                                     </ul>
-                                </li>
-                                <li class="wishlist"><a
-                                            href="http://opencart.magentech.com/themes/so_maxshop/layout4/index.php?route=account/wishlist"
-                                            id="wishlist-total" class="top-link-wishlist" title="Wishlist (0)">Wishlist
-                                        (3)</a></li>
+                                </li>#}
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <li>
+                                        <a href="{{ path('fos_user_profile_show') }}"><i
+                                                    class="fa fa-user"></i> {{ app.user.username }}</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"
+                                                                                            aria-hidden="true"></i>
+                                            Déconnexion</a>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a href="{{ path('fos_user_security_login') }}">
+                                            <i class="fa fa-pencil-square-o"></i> Connexion
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('fos_user_registration_register') }}">
+                                            <i class="fa fa-user"></i> Inscription
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('student_registration') }}">
+                                            <i class="fa fa-user"></i> Ins. Eleve
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('teacher_registration') }}">
+                                            <i class="fa fa-user"></i> Ins. Prof
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                                {#<li class="wishlist">
+                                    <a href="#" id="wishlist-total" class="top-link-wishlist" title="Wishlist (0)">
+                                        Wishlist (3)
+                                    </a>
+                                </li>#}
                                 <!-- <li class="login"><a href="http://opencart.magentech.com/themes/so_maxshop/layout4/index.php?route=checkout/cart" title="Shopping Cart"><span class="hidden-xs hidden-sm hidden-md">Shopping Cart</span></a></li> -->
 
                             </ul>
 
-                            <div class="form-group currencies-block">
+                            {#<div class="form-group currencies-block">
                                 <form action="http://opencart.magentech.com/themes/so_maxshop/layout4/index.php?route=common/currency/currency"
                                       method="post" enctype="multipart/form-data" id="currency">
                                     <a class="btn btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -226,7 +262,7 @@
                                            value="http://opencart.magentech.com/themes/so_maxshop/layout4/index.php?route=common/home"
                                            type="hidden">
                                 </form>
-                            </div>
+                            </div>#}
 
 
                             <div class="form-group languages-block ">
@@ -240,18 +276,18 @@
                                     </a>
                                     <ul style="display: none;" class="dropdown-menu">
                                         <li>
+                                            <a onclick="$('input[name=\'code\']').attr('value', 'ar'); $('#bt-language').submit();">
+                                                <img class="image_flag"
+                                                     src="{{ asset('img/lb.png') }}"
+                                                     alt="Français" title="Français">
+                                                Français </a>
+                                        </li>
+                                        <li>
                                             <a onclick="$('input[name=\'code\']').attr('value', 'en'); $('#bt-language').submit();">
                                                 <img class="image_flag"
                                                      src="{{ asset('img/gb.png') }}"
                                                      alt="English" title="English">
                                                 English </a>
-                                        </li>
-                                        <li>
-                                            <a onclick="$('input[name=\'code\']').attr('value', 'ar'); $('#bt-language').submit();">
-                                                <img class="image_flag"
-                                                     src="{{ asset('img/lb.png') }}"
-                                                     alt="Arabic" title="Arabic">
-                                                Arabic </a>
                                         </li>
                                     </ul>
 
@@ -783,7 +819,8 @@
                                                         </div>
                                                     </li>
                                                     <li class="item-style1 with-sub-menu hover"><p
-                                                                class="close-menu"></p><a href="" class="clearfix"><strong>Electronic</strong>
+                                                                class="close-menu"></p><a href=""
+                                                                                          class="clearfix"><strong>Electronic</strong>
                                                             <span class="label"> New</span> <b class="caret"></b> </a>
                                                         <div class="sub-menu"
                                                              style="width: 70%; display: none; right: auto;">
@@ -937,7 +974,8 @@
                                                         </div>
                                                     </li>
                                                     <li class="item-style2 with-sub-menu hover"><p
-                                                                class="close-menu"></p><a href="" class="clearfix"><strong>Accessories</strong>
+                                                                class="close-menu"></p><a href=""
+                                                                                          class="clearfix"><strong>Accessories</strong>
                                                             <span class="label"> Hot</span> <b class="caret"></b> </a>
                                                         <div class="sub-menu"
                                                              style="width: 100%; display: none; right: 0px;">
@@ -1166,7 +1204,8 @@
                                                                 class="clearfix"><strong>Blog</strong> <span
                                                                     class="label"> </span></a></li>
                                                     <li class="style-page with-sub-menu hover"><p
-                                                                class="close-menu"></p><a href="" class="clearfix"><strong>Pages</strong>
+                                                                class="close-menu"></p><a href=""
+                                                                                          class="clearfix"><strong>Pages</strong>
                                                             <span class="label"> </span> <b class="caret"></b> </a>
                                                         <div class="sub-menu"
                                                              style="width: 40%; display: none; right: auto;">
@@ -1381,22 +1420,8 @@
     </header>
 
 
-
-
-
-
-
-
-
     {% block content %}
     {% endblock %}
-
-
-
-
-
-
-
 
 
     <div class="footer-container">

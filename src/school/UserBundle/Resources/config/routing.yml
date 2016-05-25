@@ -1,3 +1,9 @@
-school_user_homepage:
-    path:     /
-    defaults: { _controller: schoolUserBundle:Default:index }
+# school/UserBundle/Resources/config/routing.yml
+
+student_registration:
+    path:  /register/student
+    defaults: { _controller: schoolUserBundle:RegistrationStudent:register }
+
+teacher_registration:
+    path:  /register/teacher
+    defaults: { _controller: schoolUserBundle:RegistrationTeacher:register }
