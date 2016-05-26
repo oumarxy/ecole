@@ -67,6 +67,39 @@ class Teacher extends User
     private $address;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom de la ville ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "Le nom de la ville ne doit pas avoir plus de {{ limit }} caractères"
+     * )
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="province", type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom de la province ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "Le nom de la province ne doit pas avoir plus de {{ limit }} caractères"
+     * )
+     */
+    private $province;
+
+    /**
+     * @ORM\OneToOne(targetEntity="school\HomeBundle\Entity\Image", cascade={"persist", "remove"})
+     */
+    private $image;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="registration_date", type="datetime")
@@ -109,6 +142,7 @@ class Teacher extends User
         $this->birthdate = new \DateTime();
         $this->registrationDate = new \DateTime();
         $this->courses = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->userType = "Teacher";
     }
 
     /**
@@ -256,6 +290,54 @@ class Teacher extends User
     }
 
     /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return Teacher
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get province
+     *
+     * @return string
+     */
+    public function getProvince()
+    {
+        return $this->province;
+    }
+
+    /**
+     * Set province
+     *
+     * @param string $province
+     *
+     * @return Teacher
+     */
+    public function setProvince($province)
+    {
+        $this->province = $province;
+
+        return $this;
+    }
+
+    /**
      * Get registrationDate
      *
      * @return \DateTime
@@ -347,6 +429,30 @@ class Teacher extends User
     public function setUserType($userType)
     {
         $this->userType = $userType;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \school\HomeBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \school\HomeBundle\Entity\Image $image
+     *
+     * @return Teacher
+     */
+    public function setImage(\school\HomeBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
 
         return $this;
     }

@@ -1,61 +1,239 @@
-<div class="container">
+{% extends "schoolUserBundle::layout.html.twig" %}
 
-    <div class="col-md-12">
+{% block user_content %}
 
+
+
+    <div class="container">
         <ul class="breadcrumb">
-            <li><a href="#">Accueil</a>
-            </li>
-            <li>Inscription</li>
+            <li><a href="{{ path('school_home_homepage') }}"><i class="fa fa-home"></i> Accueil</a></li>
+            <li><a href="#">Compte</a></li>
+            <li><a href="#">Inscription</a></li>
         </ul>
 
-    </div>
+        <div class="row">
+            <div id="content" class="col-sm-12">
+                <h1>Créer un compte pour professeur</h1>
+                <p>Enregistrer un nouveau professeur.</p>
+                <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
+                    <fieldset id="account">
+                        <legend>Informations Personnelles</legend>
+                        <div class="form-group required" style="display: none;">
+                            <label class="col-sm-2 control-label">Customer Group</label>
+                            <div class="col-sm-10">
+                                <div class="radio">
+                                    <label>
+                                        <input name="customer_group_id" value="1" checked="checked" type="radio">
+                                        Default
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-firstname">Nom</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.middleName, { 'attr': {'class': 'form-control', 'placeholder': 'Nom' } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.middleName) }}
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="col-sm-6 col-sm-offset-3">
-        <div class="box">
-            <h1>Inscription</h1>
+                        <br><br>
 
-            <p class="text-muted">Vous avez déjà un compte? <a href="{{ path('fos_user_security_login') }}">TEACHER
-                    Connectez-vous</a></p>
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-lastname">Postnom</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.firstName, { 'attr': {'class': 'form-control', 'placeholder': 'Postnom' } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.firstName) }}
+                                </div>
+                            </div>
+                        </div>
 
-            <hr>
+                        <br><br>
 
-            <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
-                <div class="form-group">
-                    <label for="username">Nom d'utilisateur</label>
-                    {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'form.username'|trans } }) }}
-                    <div class="has-error" style="color: red">
-                        {{ form_errors(form.username) }}
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-email">Prénom</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.lastName, { 'attr': {'class': 'form-control', 'placeholder': 'Prénom' } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.lastName) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-telephone">Sexe</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.gender, { 'attr': {'class': 'form-control' } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.gender) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label text-right" for="input-fax">Date de Naissance</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.birthdate, { 'attr': {'class': 'form-control' } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.birthdate) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label text-right" for="input-fax">Lieu de Naissance</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.placeOfBirth, { 'attr': {'class': 'form-control', 'placeholder': 'Lieu de naissance' } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.placeOfBirth) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                    </fieldset>
+                    <fieldset id="address">
+                        <legend>Votre Adresse</legend>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label text-right" for="input-company">Téléphone</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.phone, { 'attr': {'class': 'form-control', 'placeholder': 'Numéro de téléphone' } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.phone) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-address-1">Adresse</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.address, { 'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Votre adresse de résidence' } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.address) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+                        <br><br>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label text-right" for="input-address-2">Ville</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.city, { 'attr': {'class': 'form-control', 'placeholder': 'Ville' } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.city) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-city">Province</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.province, { 'attr': {'class': 'form-control' } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.province) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                    </fieldset>
+                    <fieldset>
+                        <legend>Information de Connexion</legend>
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-email">Nom d'utilisateur</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': "Nom d'utilisateur" } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.username) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-email">E-Mail</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'E-Mail' } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.email) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-password">Mot de Passe</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Mot de passe' } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.plainPassword.first) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-confirm">Vérification</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Vérification' } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.plainPassword.second) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                    </fieldset>
+                    <fieldset>
+                        <legend>Image</legend>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-image">Image</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.image) }}
+                                <p class="help-block">Sélectionnez votre image de profile</p>
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.image) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                    </fieldset>
+                    {{ form_rest(form) }}
+                    <div class="buttons">
+                        <div class="pull-right">
+                            <input value="Continue" class="btn btn-primary" type="submit">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans } }) }}
-                    <div class="has-error" style="color: red">
-                        {{ form_errors(form.email) }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password">Mot de passe</label>
-                    {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans } }) }}
-                    <div class="has-error" style="color: red">
-                        {{ form_errors(form.plainPassword.first) }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password_confirmation">Vérification</label>
-                    {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'form.password_confirmation'|trans } }) }}
-                    <div class="has-error" style="color: red">
-                        {{ form_errors(form.plainPassword.second) }}
-                    </div>
-                </div>
 
-                {{ form_rest(form) }}
+                    <br><br>
 
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> S'inscrire</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<!-- /.container -->
+
+{% endblock user_content %}

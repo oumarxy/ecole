@@ -21,10 +21,13 @@ class RegistrationStudentFormType extends AbstractType
             ->add('birthdate', 'datetime')
             ->add('placeOfBirth')
             ->add('address')
+            ->add('city')
+            ->add('province')
             ->add('registrationDate', 'datetime')
             ->add('gender')
             ->add('phone')
             ->add('userType')
+            ->add('image')
             ->add('grade');
     }
 
