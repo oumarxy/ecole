@@ -129,7 +129,6 @@ class Student extends User
 
     /**
      * @ORM\ManyToOne(targetEntity="school\HomeBundle\Entity\Grade", inversedBy="students", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
      */
     private $grade;
 
@@ -480,7 +479,7 @@ class Student extends User
      *
      * @return Student
      */
-    public function setGrade(\school\HomeBundle\Entity\Grade $grade)
+    public function setGrade(\school\HomeBundle\Entity\Grade $grade = null)
     {
         $this->grade = $grade;
 

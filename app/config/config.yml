@@ -89,7 +89,7 @@ pugx_multi_user:
         registration:
           form:
             type: school\UserBundle\Form\Type\RegistrationTeacherFormType
-            name: fos_user_registration_form
+            name: fos_user_registration_form_teacher
             validation_groups:  [Registration, Default]
           template: schoolUserBundle:Registration:teacher.form.html.twig
         profile:
@@ -103,6 +103,7 @@ pugx_multi_user:
         registration:
           form:
             type: school\UserBundle\Form\Type\RegistrationStudentFormType
+            name: fos_user_registration_form_student
           template: schoolUserBundle:Registration:student.form.html.twig
         profile:
           form:
