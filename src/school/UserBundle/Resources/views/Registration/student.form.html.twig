@@ -15,7 +15,7 @@
             <div id="content" class="col-sm-12">
                 <h1>Créer un compte pour élève</h1>
                 <p>Enregistrer un nouvel élève.</p>
-                <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
+                <form action="{{ path('student_registration') }}" {{ form_enctype(form) }} method="POST">
                     <fieldset id="account">
                         <legend>Informations Personnelles</legend>
                         <div class="form-group required" style="display: none;">
